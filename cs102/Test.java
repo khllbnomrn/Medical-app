@@ -10,9 +10,12 @@ public class Test {
 		Scanner std=new Scanner(System.in);
 		boolean login=false;
 		int user_in=0;
-		//File Doctors = new File("Doctors.txt");
+		initializing_Files file_init = new initializing_Files();
+		File file;
 		User temp=new Doctor("name","last name","email","numer","username","password","office","spec");
-		
+		file_init.createfile("Users.txt");
+		User[] users=new User[file.length()];
+
 		
 	do {
 		//login-sign up page
@@ -173,5 +176,25 @@ public class Test {
 	}
 	
 
+	public static File createfile(String fname) {
+
+	try {
+      File file = new File(fname);
+      if (file.createNewFile()) {
+        return file;
+		else{ System.out.println("File already exists.");}
+       
+      }
+    } catch (IOException e) {
+      System.out.println("An error occurred.");
+      e.printStackTrace();
+
+	}
 }
 
+
+
+
+
+
+}
