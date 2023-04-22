@@ -18,45 +18,7 @@ public abstract class User {
 	
 	public abstract int menu();
 	
-	public void change_info()
-	{
-		int answer=0;
-		
-		System.out.println("Enter password");
-		String password_confirm=std.nextLine();
-		
-		if (password_confirm!=password)
-		{
-		do {
-		System.out.println("what would you like to change?");
-		System.out.println("1) Phone Number : ");
-		System.out.println("2) Email : ");
-		System.out.println("3) Password : ");
-		
-		
-		answer=std.nextInt();
-		}while(answer<1||answer>3);
-		
-		switch(answer)
-		{
-			case 1 : 
-				System.out.println("New number : ");
-				Number=std.nextLine();
-				break;
-			case 2 : 
-				System.out.println("New email : ");
-				email=std.nextLine();
-				break;	
-			case 3 : 
-				System.out.println("New password : ");
-				password=std.nextLine();
-				break;	
-				
-		}
-		}
-		else {System.out.println("wrong password.");
-			}
-	}
+	public abstract void change_info();
 	
 		
 	
@@ -139,8 +101,13 @@ public void setEmail(String email)
 		
 	}
 	
+	public String FiletoString() 
+	{
+		return id+"#"+Name+"#"+LastName+"#"+email+"#"+Number+"#"+password+"#"+username;
+	}
+
 	public String toString() 
 	{
-		return id+" \n"+Name+" "+LastName+"\nEmail : "+email+"\nPhone Number : "+Number;
+		return id+" "+Name+" "+LastName+" "+email+" "+Number;
 	}
 }

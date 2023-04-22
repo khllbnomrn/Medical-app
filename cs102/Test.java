@@ -10,11 +10,21 @@ public class Test {
 		Scanner std=new Scanner(System.in);
 		boolean login=false;
 		int user_in=0;
-		initializing_Files file_init = new initializing_Files();
+		Files file_init = new Files();
 		File file;
-		User temp=new Doctor("name","last name","email","numer","username","password","office","spec");
+		int n=0;
+		User[] users= new User[2];
+		User temp=new Doctor("Name","last name","email","numer","username","password","office","spec");
+		User temp2=new Doctor("name","last name","email","numer","username","password","office","spec");
 		file_init.createfile("Users.txt");
-		User[] users=new User[file.length()];
+		file_init.createfile("appointments.txt");
+		users[0]=temp;
+		users[1]=temp2;
+		file_init.writefile("Users.txt", users);
+		
+		String[] user_info=file_init.ReadFile("Users.txt");
+		 //String_user(user_info);
+		
 
 		
 	do {
@@ -48,17 +58,11 @@ public class Test {
 					break;
 
 					}
+				//users[i]=temp;	
 				login=true;
 				break;
 				
 			case 2 :	
-				/*
-				 * 
-				 * 
-				 * 
-				 * load from file into array*
-				 				  			* 
-				 				  			*/
 				
 				
 				String answer="";
@@ -71,7 +75,7 @@ public class Test {
 				
 					/*look for user_id in array and assign it to temp*/
 					
-				if (!temp.auth(password,username))
+				if (temp.auth(password,username))
 				{	
 					exit=true;
 					login=true;
@@ -110,12 +114,7 @@ public class Test {
 		
 		
 		System.out.println("what would you like to do next?");
-		switch(temp.menu())
-		{
-		case 4: temp.change_info();
-		System.out.println(temp.toString());
-		break;
-		}
+			System.out.println(temp.menu());
 		
 
 		
@@ -124,14 +123,29 @@ public class Test {
 		
 		
 		
-		std.close();
+		
 }
-	
+	public static User[] String_user(String [] user_info)
+	{
+		User [] users=new User[user_info.length];
+		for (int i=0; i<user_info.length;i++)
+		{
+			if (user_info[i].charAt(0)=='D')
+			{
+				users[i]=new Doctor();
+			}
+			else { users[i]=new Patient();}
+		}
+		return users;
+	}	
+
+
 	public static User signup (char U)
 	{
 		User temp;
 		
 		Scanner std=new Scanner(System.in);
+		
 		System.out.print("choose username : ");
 		String username=std.nextLine();
 		System.out.print("choose password : ");
@@ -159,37 +173,13 @@ public class Test {
 		{
 			temp=new Patient(name,lastname,email,number,username,password);
 		}
-		try {
-			
-			FileWriter writer=new FileWriter("Doctors.txt");
-			writer.write(temp.toString());
-			writer.close();
-			}
-			catch (IOException e) {
-			      System.out.println("An error occurred.");
-			      e.printStackTrace();
-		    }
+				
 		
-		
-		std.close();
 		return temp;
 	}
 	
 
-	public static File createfile(String fname) {
-
-	try {
-      File file = new File(fname);
-      if (file.createNewFile()) {
-        return file;
-		else{ System.out.println("File already exists.");}
-       
-      }
-    } catch (IOException e) {
-      System.out.println("An error occurred.");
-      e.printStackTrace();
-
-	}
+	
 }
 
 
@@ -197,4 +187,4 @@ public class Test {
 
 
 
-}
+
