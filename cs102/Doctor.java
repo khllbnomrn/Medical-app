@@ -39,7 +39,7 @@ public class Doctor extends User
 		System.out.println("Enter password");
 		String password_confirm=std.nextLine();
 		
-		if (password_confirm==password)
+		if (password_confirm.equals(password))
 		{
 		do {
 			System.out.println("what would you like to change?");

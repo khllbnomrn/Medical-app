@@ -85,18 +85,20 @@ public class Patient extends User {
 
 
 		do {
+		
 		System.out.println("please choose speciality : (leave empty not important)");
 		String look_spec=std.nextLine();
 		System.out.println("preferred adress : (leave empty if not important)");
 		String look_adress=std.nextLine();
-		}while(look_adress==""&&look_spec=="");
+
+		}while(look_adress.equals("")&&look_spec.equals(""));
 
 		for (int i=0; i<doctors.length;i++)
 		{
-			if (doctors[i].getSpec()==look_spec)
+			if (doctors[i].getSpec().equals(look_spec))
 			{System.out.println(doctors[i].toString());}
 
-			if (doctors[i].getOffice_adress==look_adress)
+			if (doctors[i].getOffice_adress.equals(look_adress))
 			{System.out.println(doctors[i].toString());}
 
 		}

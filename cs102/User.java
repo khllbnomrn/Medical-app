@@ -65,23 +65,24 @@ public abstract class User {
 		this.Number=Number;		
 	}
 	
-	public boolean auth(String  input_password, String input_username)
+	public boolean auth(String  input_password, String input_username,User[] users)
 	{
 		
 			
-			
-			if (input_username==username&&input_password==password)
+			for (int i=0; i<users.length;i++)
+			{	
+			if (input_username.equals(users[i].username)&&input_password.equals(users[i].password))
 					{
 					System.out.println("Acces granted welcome back !");
 						return true;
 					}
-			else 
-			{
-				System.out.println("wrong info.");
-				return false;
+				
 			
 			}
+			System.out.println("wrong info.");
+				return false;
 	}
+
 	
 	
 	public String getuser() {return username;}
@@ -103,7 +104,7 @@ public void setEmail(String email)
 	
 	public String FiletoString() 
 	{
-		return id+"#"+Name+"#"+LastName+"#"+email+"#"+Number+"#"+password+"#"+username;
+		return id+"#"+Name+"#"+LastName+"#"+email+"#"+Number+"#"+username+"#"+password;
 	}
 
 	public String toString() 

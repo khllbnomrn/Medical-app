@@ -11,23 +11,25 @@ public class Test {
 		boolean login=false;
 		int user_in=0;
 		Files file_init = new Files();
-		File file;
-		int n=0;
-		User[] users= new User[2];
+		File file = new File("Users.txt");
+
+		
 		User temp=new Doctor("Name","last name","email","numer","username","password","office","spec");
 		User temp2=new Doctor("name","last name","email","numer","username","password","office","spec");
 		file_init.createfile("Users.txt");
 		file_init.createfile("appointments.txt");
+		
+		String[] arr=file_init.ReadFile("Users.txt");
+		User[] users= new User[arr.length+1];
 		users[0]=temp;
 		users[1]=temp2;
-		file_init.writefile("Users.txt", users);
-		
-		String[] user_info=file_init.ReadFile("Users.txt");
-		 //String_user(user_info);
-		
+		if (file.length()!=0)
+		{
+		String_user(arr);
+		}
 
 		
-	do {
+		do {
 		//login-sign up page
 		
 		do {	
@@ -58,24 +60,28 @@ public class Test {
 					break;
 
 					}
-				//users[i]=temp;	
+				users[arr.length]=temp;	
 				login=true;
 				break;
 				
 			case 2 :	
 				
-				
+				if (users.length==0)
+				{
+					System.out.println("No registries in the system please sign up !");
+					break;
+				}
 				String answer="";
 				boolean exit=false;
-				do {
+				do
+				{
 					System.out.print("Username : ");
 					String username=std.nextLine();
-					System.out.print("Password : ");
-					String password=std.nextLine();
-				
-					/*look for user_id in array and assign it to temp*/
+
 					
-				if (temp.auth(password,username))
+				
+					
+				if (temp.auth("password",username,users))
 				{	
 					exit=true;
 					login=true;
@@ -85,7 +91,7 @@ public class Test {
 					answer=std.nextLine();
 				}
 				
-				if (answer=="N")
+				if (answer.equals("N"))
 				{
 					exit=true;
 					break;
@@ -118,7 +124,7 @@ public class Test {
 		
 
 		
-		
+			file_init.writefile("Users.txt", users);
 		
 		
 		
@@ -130,15 +136,23 @@ public class Test {
 		User [] users=new User[user_info.length];
 		for (int i=0; i<user_info.length;i++)
 		{
-			if (user_info[i].charAt(0)=='D')
-			{
-				users[i]=new Doctor();
-			}
-			else { users[i]=new Patient();}
-		}
-		return users;
+			System.out.println(user_info[i]+" "+i);
+       		String[] filter = user_info[i].split("#");
+			  
+			   System.out.println(filter[0]);
+			   if (filter[0].equals("Doctor"))
+			   {
+				   System.out.println("DOCTOUR");
+			   }
+			   else    { 
+					   System.out.println("Patieent");
+					   }
+			
+		
+		
 	}	
-
+	return users;
+}
 
 	public static User signup (char U)
 	{

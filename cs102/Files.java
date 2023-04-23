@@ -42,21 +42,31 @@ public class Files {
   public String[] ReadFile(String fname){
  
 
-    String[] data = new String[1000];
+    
+    
+    int i=0;
+    
+    String[] aux= new String[1000];
     try {
+
       
       File file = new File(fname);
       Scanner fread = new Scanner(file);
-      int i=0;
       while (fread.hasNextLine()) {
         String line = fread.nextLine();
-        data[i]=line;
+        aux[i]=line;
         i++;
+        
       }
       fread.close();
     } catch (FileNotFoundException e) {
       System.out.println("An error occurred.");
       e.printStackTrace();
+    }
+    String[] data= new String[i];
+    for (int j=0; j<i;j++)
+    {
+      data[j]=aux[j];
     }
     return data;
   }
