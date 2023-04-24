@@ -1,5 +1,6 @@
 package app;
 import java.util.Scanner;
+import java.util.ArrayList;
 public abstract class User {
 	
 	Scanner std=new Scanner(System.in);
@@ -10,8 +11,7 @@ public abstract class User {
 	protected int id;
 	protected String username;
 	protected String password;
-	int n=0;
-	protected Appointment[] appointments=new Appointment[n];
+	protected ArrayList<Appointment> appointments=new ArrayList<Appointment>();
 	private static int count=0;
 	public User() {id=++count;}
 	
@@ -24,9 +24,9 @@ public abstract class User {
 	
 	public void appointment_list() 
 	{
-		for (int i=0; i<appointments.length; i++)
+		for (int i=0; i<appointments.size(); i++)
 		{
-			System.out.println(appointments[i].toString());
+			System.out.println(appointments.get(i).toString());
 		}
 	}
 	
@@ -44,18 +44,8 @@ public abstract class User {
 	public void add_appointmentlist(Appointment a)
 	{
 		
+		appointments.add(a);
 		
-		Appointment[] appointment_aux=new Appointment[n+1];
-		for (int i=0; i<n ;i++)
-		{
-			appointment_aux[i]=appointments[i];
-			appointment_aux[n]=a;					
-		}
-		for (int i=0; i<=n ;i++)
-		{
-			appointments[i]=appointment_aux[i];
-		}
-		n++;
 	}
 	
 	
@@ -65,23 +55,7 @@ public abstract class User {
 		this.Number=Number;		
 	}
 	
-	public boolean auth(String  input_password, String input_username,User[] users)
-	{
-		
-			
-			for (int i=0; i<users.length;i++)
-			{	
-			if (input_username.equals(users[i].username)&&input_password.equals(users[i].password))
-					{
-					System.out.println("Acces granted welcome back !");
-						return true;
-					}
-				
-			
-			}
-			System.out.println("wrong info.");
-				return false;
-	}
+	
 
 	
 	

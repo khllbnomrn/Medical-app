@@ -1,12 +1,13 @@
 package app;
 import java.util.Scanner;
+import java.util.ArrayList;
 public class Doctor extends User 
 {	
 		private String office_adress;
 		
 
 		int n=0;
-		private Patient[] Patients=new Patient[n];
+		private  ArrayList<Patient> Patients=new ArrayList<Patient>();
 		private String Spec;
 	
 		Scanner std=new Scanner(System.in);
@@ -109,29 +110,18 @@ public class Doctor extends User
 
 		public void add_patient(Patient P)
 		{
-		
-		Patient[] Patients_aux=new Patient[n+1];
-		for (int i=0; i<n ;i++)
-		{
-			Patients_aux[i]=Patients[i];
-			Patients_aux[n]=P;					
-		}
-		for (int i=0; i<=n ;i++)
-		{
-			Patients[i]=Patients_aux[i];
-		}
-		n++;
+			Patients.add(P);	
 		}
 	
 		public void patientslist() {
 		
 		for (int i=0; i<n; i++)
 			{
-			System.out.println(Patients[i].toString());	
-			}
+			System.out.println(Patients.get(i).toString());	
+			
 		
 		}
-
+	}
 		public String FiletoString() 
 		{
 		return "Doctor#"+super.FiletoString()+"#"+office_adress+"#"+Spec;

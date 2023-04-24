@@ -1,3 +1,2 @@
-Doctor#1#Name#last name#email#numer#username#password#office#spec
-Doctor#2#name#last name#email#numer#username#password#office#spec
-Doctor#3#esm#lakab#mail#noumrou#testing#value#ghadi#testing
+Patient#3#ddd#l#l#l#username#hello
+Doctor#4#doctour#lakab#doctourlakab@email.com#222111#testing#value#there#baabas

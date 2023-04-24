@@ -1,8 +1,10 @@
 package app;
 import java.io.File; 
-import java.io.FileNotFoundException;  
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner; 
 import java.io.*;
+
 
 
 public class Files {
@@ -22,14 +24,14 @@ public class Files {
     }
     
   }
-  public void writefile(String fname, User[] data) {
+  public void writefile(String fname, ArrayList<User> data) {
 
 
     try {
       FileWriter pen = new FileWriter(fname);
-      for (int i=0; i<data.length;i++)
+      for (int i=0; i<data.size();i++)
       {
-        pen.write(data[i].FiletoString()+"\n");
+        pen.write(data.get(i).FiletoString()+"\n");
       }
       
       pen.close();
@@ -39,22 +41,20 @@ public class Files {
     }
   }
 
-  public String[] ReadFile(String fname){
+  public ArrayList<String> ReadFile(String fname){
  
 
     
     
     int i=0;
-    
-    String[] aux= new String[1000];
+    ArrayList<String> data= new ArrayList<String>();
     try {
 
-      
       File file = new File(fname);
       Scanner fread = new Scanner(file);
       while (fread.hasNextLine()) {
         String line = fread.nextLine();
-        aux[i]=line;
+        data.add(line);
         i++;
         
       }
@@ -62,11 +62,6 @@ public class Files {
     } catch (FileNotFoundException e) {
       System.out.println("An error occurred.");
       e.printStackTrace();
-    }
-    String[] data= new String[i];
-    for (int j=0; j<i;j++)
-    {
-      data[j]=aux[j];
     }
     return data;
   }

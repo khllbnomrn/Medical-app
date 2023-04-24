@@ -1,4 +1,5 @@
 package app;
+import java.util.ArrayList;
 import java.util.Scanner;
 public class Patient extends User {
 	
@@ -81,7 +82,7 @@ public class Patient extends User {
 		
 	}
 
-	public void Doc_search(Doctor[] doctors) {
+	public void Doc_search(ArrayList<Doctor> doctors) {
 
 
 		do {
@@ -93,13 +94,13 @@ public class Patient extends User {
 
 		}while(look_adress.equals("")&&look_spec.equals(""));
 
-		for (int i=0; i<doctors.length;i++)
+		for (int i=0; i<doctors.size();i++)
 		{
-			if (doctors[i].getSpec().equals(look_spec))
-			{System.out.println(doctors[i].toString());}
+			if (doctors.get(i).getSpec().equals(look_spec))
+			{System.out.println(doctors.get(i).toString());}
 
-			if (doctors[i].getOffice_adress.equals(look_adress))
-			{System.out.println(doctors[i].toString());}
+			if (doctors.get(i).getOffice_adress.equals(look_adress))
+			{System.out.println(doctors.get(i).toString());}
 
 		}
 
