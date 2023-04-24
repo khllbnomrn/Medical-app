@@ -3,6 +3,7 @@ import java.util.Scanner;
 import java.io.FileWriter;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 public class Test {
 	
 	
@@ -14,18 +15,21 @@ public class Test {
 		File file = new File("Users.txt");
 
 		
-		User temp=new Doctor("Name","last name","email","numer","username","password","office","spec");
-		User temp2=new Doctor("name","last name","email","numer","username","password","office","spec");
+		//testing values User temp=new Doctor("Name","last name","email","numer","username","password","office","spec");users.add(temp);
+		
+		//testing values User temp2=new Doctor("name","last name","email","numer","username","password","office","spec");users.add(temp2);
 		file_init.createfile("Users.txt");
 		file_init.createfile("appointments.txt");
 		
-		String[] arr=file_init.ReadFile("Users.txt");
-		User[] users= new User[arr.length+1];
-		users[0]=temp;
-		users[1]=temp2;
+		ArrayList<String> arr=file_init.ReadFile("Users.txt");
+
+		ArrayList<User> users= new ArrayList<User>();
+
+		
+
 		if (file.length()!=0)
 		{
-		String_user(arr);
+			users=String_user(arr);
 		}
 
 		
@@ -51,42 +55,50 @@ public class Test {
 				switch(user_type) {
 				
 				case 1 :
-					temp=signup('D');
+					users.add(signup('D'));
 					break;
 					
 				case 2 : 
-					temp=signup('P');
+					users.add(signup('P'));
 					
 					break;
 
 					}
-				users[arr.length]=temp;	
+					
 				login=true;
 				break;
 				
 			case 2 :	
 				
-				if (users.length==0)
+				if (users.size()==0)
 				{
 					System.out.println("No registries in the system please sign up !");
 					break;
 				}
 				String answer="";
 				boolean exit=false;
+
 				do
 				{
+
+				
 					System.out.print("Username : ");
 					String username=std.nextLine();
-
-					
+			
 				
-					
-				if (temp.auth("password",username,users))
+					User temp=new getuser(username,temp);
+
+					System.out.print("Password : ");
+					String password=std.nextLine();
+				
+				if (auth(password,temp)
 				{	
+					
 					exit=true;
 					login=true;
 				}
-				else {
+				else 
+				{
 					System.out.print("would you like to try again? (Y/N)");
 					answer=std.nextLine();
 				}
@@ -124,28 +136,29 @@ public class Test {
 		
 
 		
-			file_init.writefile("Users.txt", users);
+		file_init.writefile("Users.txt", users);
 		
 		
 		
 		
 		
 }
-	public static User[] String_user(String [] user_info)
+	public static ArrayList<User> String_user(ArrayList<String> user_info)
 	{
-		User [] users=new User[user_info.length];
-		for (int i=0; i<user_info.length;i++)
+
+		ArrayList<User> users=new ArrayList<User>();
+		for (int i=0; i<user_info.size();i++)
 		{
-			System.out.println(user_info[i]+" "+i);
-       		String[] filter = user_info[i].split("#");
+		
+			String[] filter = user_info.get(i).split("#");
 			  
-			   System.out.println(filter[0]);
+			  
 			   if (filter[0].equals("Doctor"))
 			   {
-				   System.out.println("DOCTOUR");
+				   users.add(new Doctor(filter[2],filter[3],filter[4],filter[5],filter[6],filter[7],filter[8],filter[9]));
 			   }
 			   else    { 
-					   System.out.println("Patieent");
+				users.add(new Patient(filter[2],filter[3],filter[4],filter[5],filter[6],filter[7]));
 					   }
 			
 		
@@ -191,7 +204,29 @@ public class Test {
 		
 		return temp;
 	}
-	
+
+	public static boolean auth(String  input_password, String input_username, ArrayList<User> users)
+	{
+		
+			
+			for (int i=0; i<users.size();i++)
+			{	
+			if (input_username.equals(users.get(i).username)&&input_password.equals(users.get(i).password))
+					{
+					System.out.println("Acces granted welcome back !");
+						return true;
+					}
+				
+			
+			}
+			System.out.println("wrong info.");
+				return false;
+	}
+
+	public static User getuser()
+	{
+		
+	}
 
 	
 }
