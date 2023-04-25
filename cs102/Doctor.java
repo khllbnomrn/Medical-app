@@ -89,14 +89,27 @@ public class Doctor extends User
 
 		public void appointment_debrief()
 		{
-			System.out.println("id of appointment to change : (check appointments list)");
+			if (appointments.size()==0)
+			{
+				System.out.println("No appointments.");
+			}
+			else {
+			System.out.println("id of appointment to debrief : (check appointments list)");
 			int id=std.nextInt();
 			int i=0;
-			while(appointments.get(i).getId()!=id)
+			boolean found =false;
+			while(i<appointments.size()&&found==false)
 			{
-				i++;
+				if(appointments.get(i).getId()==id)
+			
+			{
+				found=true;}
+				else {	
+				i++;}
+				
 			}
-
+			if (found)
+			{
 			String diag;
 			String pres;
 			do{
@@ -107,9 +120,10 @@ public class Doctor extends User
 			}while(diag.equals("")||pres.equals(""));
 			appointments.get(i).setDiagnosis(diag);
 			appointments.get(i).setPrescription(pres);
-			System.out.println("debrief succesful");
+			System.out.println("debrief succesful");}
+			else {System.out.println("Appointment id invalid");}
 		}
-		
+		}
 
 
 		public void appointment_list()
@@ -179,13 +193,35 @@ public class Doctor extends User
 	
 		public void patientslist() {
 		
+		if(appointments.size()==0)
+		{
+			System.out.println("No patietns in database.");
+		}
+		else {
 		for (int i=0; i<appointments.size(); i++)
 			{
-			System.out.println(appointments.get(i).getPat().toString());	
-			
-		
+			if (!exists(appointments.get(i).getPat()))
+			{
+				add_patient(appointments.get(i).getPat());
+			}
+
 		}
-	}
+		for (int i=0; i<Patients.size(); i++)
+		{
+			System.out.println(Patients.get(i).toString());
+		}
+		}
+		}
+		public boolean exists(Patient P)
+		{
+			for (int i=0;i<Patients.size();i++)
+			{
+				if (P.equals(Patients.get(i)))
+				return true;
+			}
+			return false;
+		}
+
 		public String FiletoString() 
 		{
 		return "Doctor#"+super.FiletoString()+"#"+office_adress+"#"+Spec;

@@ -43,7 +43,11 @@ public class Appointment {
 		this.d_confirm=d_confirm;
 	
 	}
-
+	
+	public boolean getP_confirm()
+	{
+		return p_confirm;
+	}
 
 	public void setP_confirm(boolean c)
 	{

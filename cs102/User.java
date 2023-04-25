@@ -43,6 +43,7 @@ public abstract class User {
 		{System.out.println("no upcoming appointments");}
 		else {for (int i=0; i<appointments.size(); i++)
 			{
+			if(appointments.get(i).getP_confirm())
 			System.out.println(appointments.get(i).toString());
 			}
 		}

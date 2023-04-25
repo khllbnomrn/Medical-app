@@ -47,9 +47,9 @@ public class Test {
 		//login-sign up page
 		
 		do {	
-		System.out.print("Hello!\nChoose Option : 1) signup | 2) login ");
+		System.out.print("Hello!\nChoose Option : 1) signup | 2) login | 3) exit");
 		user_in=std.nextInt();
-		}while(user_in<1||user_in>2);
+		}while(user_in<1||user_in>3);
 		
 		
 		
@@ -117,8 +117,11 @@ public class Test {
 				}
 				
 				}while(!exit);
+				break;
 				
-				
+			default : 
+				System.out.println("exiting program, Goodbye.");	
+				System.exit(0);	
 		
 				
 
@@ -145,15 +148,17 @@ public class Test {
 
 		
 		}while (option!=5);
+	
 		
 		file_init.writefileuse("Users.txt", users);
 		file_init.writefileapp("appointments.txt", appointments);
+	
+	}
+	
+	
 		
 		
-		System.exit(0);
-		
-		
-}
+
 	public static ArrayList<User> String_user(ArrayList<String> user_info)
 	{
 
@@ -254,7 +259,7 @@ public static ArrayList<Appointment> string_Appointments(ArrayList<String> appoi
 				break;
 
 			case 5 : 
-				System.out.println("Logging out, Goodbye !");
+				System.out.println("Logging out.");
 
 				break;
 			}
