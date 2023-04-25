@@ -4,6 +4,12 @@ import java.util.ArrayList;
 public class Appointment {
 
 	private int id;
+	public int getId() {
+		return id;
+	}
+
+		
+
 	private String Date;
 	private String MedicalCase;
 	private String Diagnosis;
@@ -11,6 +17,11 @@ public class Appointment {
 	private boolean urgent=false;
 	private Doctor Doc;
 	private Patient pat;
+	public Patient getPat() {
+		return pat;
+	}
+
+
 	private boolean p_confirm=false;
 	private boolean d_confirm=false; 
 	
@@ -19,6 +30,21 @@ public class Appointment {
 	
 	public Appointment() {id=++count;}
 	
+	public Appointment(String Date, String MedicalCase,String Diagnosis,String prescription,boolean urgent,Doctor Doc,Patient pat, boolean p_confirm,boolean d_confirm) {
+		id=++count;
+		this.Date=Date;
+		this.MedicalCase=MedicalCase;
+		this.Doc=Doc;
+		this.pat=pat;
+		this.Diagnosis=Diagnosis;
+		this.prescription=prescription;
+		this.urgent=urgent;
+		this.p_confirm=p_confirm;
+		this.d_confirm=d_confirm;
+	
+	}
+
+
 	public void setP_confirm(boolean c)
 	{
 		p_confirm=c;
@@ -65,9 +91,15 @@ public class Appointment {
 		this.prescription=prescription;
 	}
 	
+	public String FiletoString()
+	{
+		return id+"#"+Date+"#"+MedicalCase+"#"+Diagnosis+"#"+prescription+"#"+urgent+"#"+Doc.getId()+"#"+pat.getId()+"#"+p_confirm+"#"+d_confirm;      
+	}
+
+
 	public String toString()
 	{
-		return "Date : "+Date+"/nMedical Case : "+MedicalCase+" | Doctor's diagnosis : "+Diagnosis+"\nPrescription : "+prescription;      
+		return "Appointment id : "+id+" | Patient : "+pat.getName()+" "+pat.getLastName()+"| Doctor : "+Doc.getLastName()+" | Date : "+Date+" | Medical Case : "+MedicalCase+"| Urgent : "+urgent+"| patient confirmation : "+p_confirm+"| Doctor confirmation : "+d_confirm+" | Doctor's diagnosis : "+Diagnosis+" |  Prescription : "+prescription ;      
 	}
 	
 }

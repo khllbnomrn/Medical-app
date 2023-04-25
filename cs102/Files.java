@@ -24,7 +24,26 @@ public class Files {
     }
     
   }
-  public void writefile(String fname, ArrayList<User> data) {
+
+  public void writefileapp(String fname, ArrayList<Appointment> data) {
+
+
+    try {
+      FileWriter pen = new FileWriter(fname);
+      for (int i=0; i<data.size();i++)
+      {
+        pen.write(data.get(i).FiletoString()+"\n");
+      }
+      
+      pen.close();
+    } catch (IOException e) {
+      System.out.println("An error occurred.");
+      e.printStackTrace();
+    }
+  }
+
+
+  public void writefileuse(String fname, ArrayList<User> data) {
 
 
     try {

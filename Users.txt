@@ -1,2 +1,0 @@
-Patient#3#ddd#l#l#l#username#hello
-Doctor#4#doctour#lakab#doctourlakab@email.com#222111#testing#value#there#baabas

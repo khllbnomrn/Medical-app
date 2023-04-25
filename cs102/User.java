@@ -5,11 +5,28 @@ public abstract class User {
 	
 	Scanner std=new Scanner(System.in);
 	protected String Name;
+	public String getName() {
+		return Name;
+	}
+
 	protected String LastName;
+	public String getLastName() {
+		return LastName;
+	}
+
 	protected String email;
 	protected String Number;
 	protected int id;
+	
+	public int getId() {
+		return id;
+	}
+
 	protected String username;
+	public String getUsername() {
+		return username;
+	}
+
 	protected String password;
 	protected ArrayList<Appointment> appointments=new ArrayList<Appointment>();
 	private static int count=0;
@@ -19,14 +36,15 @@ public abstract class User {
 	public abstract int menu();
 	
 	public abstract void change_info();
-	
 		
-	
 	public void appointment_list() 
 	{
-		for (int i=0; i<appointments.size(); i++)
-		{
+		if (appointments.size()==0)
+		{System.out.println("no upcoming appointments");}
+		else {for (int i=0; i<appointments.size(); i++)
+			{
 			System.out.println(appointments.get(i).toString());
+			}
 		}
 	}
 	
@@ -55,11 +73,6 @@ public abstract class User {
 		this.Number=Number;		
 	}
 	
-	
-
-	
-	
-	public String getuser() {return username;}
 	public String getpass() {return password;}
 	
 	
